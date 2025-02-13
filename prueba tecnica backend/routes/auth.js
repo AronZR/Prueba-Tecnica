@@ -17,7 +17,7 @@ router.post(
         check('password', 'password debe de ser de 6 caracteres').isLength({min: 6}),
         validarCampos
     ], 
-    crearUsuario 
+    crearUsuario
 );
 
 router.post(
@@ -30,6 +30,6 @@ router.post(
     login
 );
 
-router.get('/renew', validarJWT,revalidarToken);
+router.get('/renew', validarJWT, revalidarToken);
 
 module.exports = router;

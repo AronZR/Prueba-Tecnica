@@ -56,7 +56,6 @@ const login = async(req, res = response) => {
     try {
         
         const usuario = await Usuario.findOne({email});
-
         if (!usuario) {
             return res.status(400).json({
                 ok: false,
@@ -67,10 +66,10 @@ const login = async(req, res = response) => {
         // confirmar passwords
         const validPassword = bcrypt.compareSync(password, usuario.password);
 
-        if(!validPassword) {
+        if (!validPassword) {
             return res.status(400).json({
                 ok: false,
-                msg: 'password invalido'
+                msg: 'password invalido',
             });
         }
 
@@ -79,16 +78,16 @@ const login = async(req, res = response) => {
 
 
 
-        res.json({
+        return res.json({
             ok: true,
             uid: usuario.id,
             name: usuario.name,
-            token
+            token: token
         });
 
     } catch (error) {
         console.log(error)
-        res.status(500).json({
+        return res.status(500).json({
             ok:false,
             msg: 'hablar con administrador'
         });
@@ -105,8 +104,9 @@ const revalidarToken = async(req, res = response) => {
 
     const token = await generarJWT(uid, name);
 
-    res.json({
+    return res.json({
         ok: true,
+        uid, name,
         token
     });
 }

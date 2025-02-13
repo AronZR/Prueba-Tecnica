@@ -9,7 +9,7 @@ export const AuthLayout = ({children, title= '' }) => {
       direction="column"
       alignItems="center"
       justifyContent="center"
-      sx={{minHeight: '100vh', backgroundColor: 'primary.main', padding: 4}}
+      sx={{minHeight: '100vh', backgroundColor: 'lightGrey', padding: 4}}
       >
         <Grid item
           className='box-shadow'
